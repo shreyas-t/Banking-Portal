@@ -2,17 +2,26 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const app = express();
+const ejs = require('ejs');
 
 //app.engine('pug', require('pug').__express)
-app.set('views',path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
+// app.set('views',path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res)=>{
-    res.render('index.pug',{
-        titel:'Index'
-    })
-});
+// app.get('/', (req, res)=>{
+//     res.render('index.ejs',{
+//         titel:'Index'
+//     })
+// });
+
+app.set('views',path.join(__dirname, '/views'));
+app.set('view engine','ejs');
+
+app.use(express.static(path.join(__dirname, '/public')));
+
+app.get('/', (req, res) => res.render('index', { title: 'Index' }));
+
 
 app.listen(3000,()=>{
     console.log("Banking portal running on 3000");
