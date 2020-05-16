@@ -1,0 +1,20 @@
+h1 #{account.nickname}
+
+table.data-panel
+    tr
+        th Name
+        th Account Number
+        if (account.unique_name === 'credit')
+            th Available Balance
+        else
+            th Prior Balance
+        th Current Balance
+    tr 
+        td
+            a(href= '/'+account.unique_name) #{account.nickname}
+        td #{account.account_number}
+        if (account.unique_name == 'credit')
+            td #{account.available}
+        else
+            td #{account.prior_balance}
+        td #{account.balance}

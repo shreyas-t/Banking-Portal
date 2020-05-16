@@ -1,10 +1,18 @@
-include ./header.pug
+mixin header()
+    include ./header.pug
 
++header()
 div.container
-    h1 title
+    h1 #{title}
     a(href = '/profile') Profile
-    br
-    a(href='/transfer') Transfer
 
-include ./footer.pug
-    
+mixin summary(account)
+    include ./summary.pug
+
++summary(accounts.checking)
++summary(accounts.savings)
++summary(accounts.credit)
+
+br
+a(href='/transfer') Transfer
+

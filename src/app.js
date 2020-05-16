@@ -4,23 +4,48 @@ const express = require('express');
 const app = express();
 const ejs = require('ejs');
 
-//app.engine('pug', require('pug').__express)
-// app.set('views',path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-// app.use(express.static(path.join(__dirname, 'public')));
+app.engine('ejs', require('ejs').__express)
+app.set('views',path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', (req, res)=>{
-//     res.render('index.ejs',{
-//         titel:'Index'
-//     })
-// });
+// app.set('views',path.join(__dirname, '/views'));
+// app.set('view engine','pug');
+// app.use(express.static(path.join(__dirname, '/public')));
 
-app.set('views',path.join(__dirname, '/views'));
-app.set('view engine','ejs');
+const accountData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), 'utf8');
+const accounts = JSON.parse(accountData);
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.get('/', (req, res) => {
+    res.render('index', { 
+        'title': 'Account Summary',
+        'accounts': accounts 
+    });
+});
 
-app.get('/', (req, res) => res.render('index', { title: 'Index' }));
+app.get('/savings',(req, res)=>{
+    res.render('account',{
+        'account': accounts.savings
+    });
+});
+
+app.get('/credit',(req, res)=>{
+    res.render('account',{
+        'account': accounts.credit
+    });
+});
+
+app.get('/checking',(req, res)=>{
+    res.render('account',{
+        'account': accounts.checking
+    });
+});
+
+
+const userData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), 'utf8');
+const users = JSON.parse(userData);
+
+app.get('/profile', (req, res) =>  res.render('profile', { user: users[0] }));
 
 
 app.listen(3000,()=>{

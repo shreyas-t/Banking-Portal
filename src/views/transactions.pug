@@ -1,0 +1,17 @@
+h1 #{account.nickname}
+
+div
+  table.data-panel
+    tr
+      th Date
+      th Type
+      th Description
+      th Status
+      th Amount
+    for transaction in account.transactions
+        tr
+            td #{transaction.date}
+            td #{transaction.type}
+            td #{transaction.description}
+            td #{transaction.status}
+            td #{transaction.amount}
