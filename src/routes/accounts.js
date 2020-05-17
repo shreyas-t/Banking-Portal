@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { accounts} = require('../data.js');
+const {accounts} = require('../data.js');
 
 router.get('/savings',(req, res)=>{
     res.render('account',{
