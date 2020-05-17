@@ -4,20 +4,21 @@ const express = require('express');
 const app = express();
 const ejs = require('ejs');
 
-app.engine('ejs', require('ejs').__express)
-app.set('views',path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
-
-// app.set('views',path.join(__dirname, '/views'));
-// app.set('view engine','pug');
-// app.use(express.static(path.join(__dirname, '/public')));
-
 const accountData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), 'utf8');
 const accounts = JSON.parse(accountData);
 
 const userData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), 'utf8');
 const users = JSON.parse(userData);
+
+app.engine('ejs', require('ejs').__express)
+app.set('views',path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
+
+// app.set('views',path.join(__dirname, '/views'));
+// app.set('view engine','pug');
+// app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
     res.render('index', { 
