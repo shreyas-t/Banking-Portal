@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const app = express();
-const ejs = require('ejs');
 const { accounts, users, writeJSON } = require('./data.js');
 const servicesRoutes = require('./routes/services.js');
 const accountRoutes = require('./routes/accounts.js');
@@ -25,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/accounts', accountRoutes);
-app.use('/services', serviceRoutes);
+app.use('/services', servicesRoutes);
 
 app.get('/profile', (req, res) =>  res.render('profile', { user: users[0] }));
 
