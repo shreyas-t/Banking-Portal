@@ -6,6 +6,7 @@ function validate(evt){
   evt.preventDefault();
   document.querySelector('.error').innerHTML = '';
   if(from.value === to.value) {
+    console.log(from.value)
     document.querySelector('.error').innerHTML = 'You can not transfer to the same account!';
   } else if (evt.type === "submit") {
     transferForm.submit();

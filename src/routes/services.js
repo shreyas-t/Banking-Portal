@@ -8,6 +8,7 @@ router.get('/transfer', (req, res)=>{
 });
 
 router.post('/transfer', (req, res)=>{
+    console.log(req)
     accounts[req.body.from].balance -= req.body.amount;
     accounts[req.body.to].balance += parseInt(req.body.amount, 10);
     writeJSON();
@@ -17,6 +18,7 @@ router.post('/transfer', (req, res)=>{
 router.get('/payment', (req, res) => res.render('payment', {account: accounts.credit}));
 
 router.post('/payment', (req, res) => {
+    console.log(req);
     accounts.credit.balance -= req.body.amount;
     accounts.credit.available += parseInt(req.body.amount);
     writeJSON();

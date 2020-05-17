@@ -1,20 +1,15 @@
 include ./header
-
     h1 Transfer
-
     if (message)
         span.message  #{message}
-        
     span.error
-    
-
-form#transferForm(action='/services/transfer' method='post'>)
+form#transferForm(action='/services/transfer' method='post')
     spap Transfer From: 
-    select(required)
+    select(required ,name='from',id='from')
         option(value="checking") Checking
         option(value="savings") Savings
     span to:
-    select(required)
+    select(required,name='to' id='to')
         option(value="checking") Checking
         option(value="savings") Savings
     input(type="number" name="amount" id="amount" required placeholder="amount" step="0.01")
