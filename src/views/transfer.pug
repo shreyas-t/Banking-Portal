@@ -1,0 +1,24 @@
+include ./header
+
+    h1 Transfer
+
+    if (message)
+        span.message  #{message}
+        
+    span.error
+    
+
+form#transferForm
+    spap Transfer From: 
+    select(required)
+        option(value="checking") Checking
+        option(value="savings") Savings
+    span to:
+    select(required)
+        option(value="checking") Checking
+        option(value="savings") Savings
+    input(type="number" name="amount" id="amount" required placeholder="amount" step="0.01")
+    button(type="submit") Transfer
+br 
+a(href="/") Back to Accounts Summary
+script(src="js/transfer.js")
