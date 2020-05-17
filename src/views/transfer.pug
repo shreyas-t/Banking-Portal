@@ -8,7 +8,7 @@ include ./header
     span.error
     
 
-form#transferForm
+form#transferForm(action='/services/transfer' method='post'>)
     spap Transfer From: 
     select(required)
         option(value="checking") Checking

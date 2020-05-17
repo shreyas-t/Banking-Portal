@@ -11,7 +11,7 @@ table.data-panel
         th Current Balance
     tr 
         td
-            a(href= '/'+account.unique_name) #{account.nickname}
+            a(href= '/account/'+account.unique_name) #{account.nickname}
         td #{account.account_number}
         if (account.unique_name == 'credit')
             td #{account.available}

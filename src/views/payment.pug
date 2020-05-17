@@ -1,0 +1,14 @@
+include ./header
+    h1 Payment
+    if(message)
+        span.message #{message}
+    span.error 
+    p Current Balance: #{account.balance}
+    form#paymentForm(action="/services/payment" method="POST")
+        label(for="amount") Payment:
+            input(type="number" name="amount" id="amount" required placeholder="amount" step="0.01")
+        button(type="submit") Submit Payment
+    br
+    a(href="/") Back to Accounts Summary
+    script(src="js/transfer.js")
+
